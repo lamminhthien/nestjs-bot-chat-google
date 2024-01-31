@@ -11,7 +11,11 @@ export class AppService {
 
   @Cron('45 * * * * *')
   reminderWork(): string {
-    sendNotificationGoogleChat({content:"Hello i will send every 5 seconds",title:'Test cronjob',url: reminderBot})
+    sendNotificationGoogleChat({
+      content: 'Hello i will send every 45 seconds',
+      title: 'Test cronjob',
+      url: reminderBot,
+    });
     return 'Reminder Work!';
   }
 }

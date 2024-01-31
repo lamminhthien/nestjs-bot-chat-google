@@ -1,5 +1,4 @@
-import {HttpService} from '@nestjs/axios';
-
+import { HttpService } from '@nestjs/axios';
 
 interface ISendNotificationGoogleChat {
   title: string;
@@ -7,7 +6,9 @@ interface ISendNotificationGoogleChat {
   url: string;
 }
 
-export const sendNotificationGoogleChat = async (data: ISendNotificationGoogleChat) => {
+export const sendNotificationGoogleChat = async (
+  data: ISendNotificationGoogleChat,
+) => {
   const httpService = new HttpService();
 
   const content = {
@@ -17,7 +18,7 @@ export const sendNotificationGoogleChat = async (data: ISendNotificationGoogleCh
         card: {
           header: {
             title: data.title,
-            imageType: 'CIRCLE'
+            imageType: 'CIRCLE',
           },
           sections: [
             {
@@ -25,15 +26,15 @@ export const sendNotificationGoogleChat = async (data: ISendNotificationGoogleCh
               widgets: [
                 {
                   textParagraph: {
-                    text: data.content
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      }
-    ]
+                    text: data.content,
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      },
+    ],
   };
 
   await httpService.axiosRef.post(data.url, content);
